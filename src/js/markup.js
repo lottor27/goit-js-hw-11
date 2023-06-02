@@ -1,5 +1,4 @@
 export { appendGallaryMarkup };
-import SimpleLightbox from 'simplelightbox';
 
 function appendGallaryMarkup(arr) {
   return arr
@@ -12,9 +11,8 @@ function appendGallaryMarkup(arr) {
         comments,
         downloads,
         largeImageURL,
-      }) => `
-      <div class="photo-card">
-    <div class = "gallery">
+      }) => `<div class="photo-card">
+    <div class = "img-box">
     <a class="gallery__link" href="${largeImageURL}">
       <img src="${previewURL}" alt="${tags}" loading="lazy" width="200"  class="image"/></a>
       </div>
@@ -32,13 +30,7 @@ function appendGallaryMarkup(arr) {
         <b class="downloads">Downloads:${downloads}</b>
       </p>
     </div>
-  </div>
-  `
+  </div>`
     )
     .join('');
 }
-
-var lightbox = new SimpleLightbox('.gallery a', {
-  captionsData: 'alt',
-  captionDelay: 250,
-});
