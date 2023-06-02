@@ -1,0 +1,132 @@
+
+header{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(42, 161, 78);
+}
+
+
+.search-form{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    
+}
+.submit-btn{
+    margin-right: 20px;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    background: #0B63F6;
+    box-shadow: 0 5px 0 #003CC5;
+}
+
+.submit-btn:hover{
+     background: #003CC5;
+    box-shadow: none;
+    position: relative;
+    top: 5px;
+}
+
+.gallary-sections{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-evenly;
+    align-items: flex-start
+    
+}
+
+.img-box{
+    height: 200px;
+    width: 200px;
+}
+
+.text-field__input {
+    margin-left: 20px;
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #bdbdbd;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+   box-shadow: 0 5px 0 #bdbdbd;
+}
+
+.hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.load-more{
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+     border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    background: #0B63F6;
+    box-shadow: 0 5px 0 #003CC5;
+    
+}
+
+
+.load-more:hover{
+     background: #003CC5;
+    box-shadow: none;
+    position: relative;
+    top: 5px;
+}
+.loader-btn{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    padding-top: 25px;
+}
+
+
+/* spiner */
+.loader {
+    padding-right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+/* end spiner */

@@ -1,39 +1,70 @@
+import SimpleLightbox from 'simplelightbox/dist/simple-lightbox.esm';
+import Notiflix from 'notiflix';
+import GallaryApiService from './js/api'
+
+export { gallarySection, clearGallary, btnLoadMore };
+
+// const axios = require('axios').default;
+const form = document.querySelector('#search-form');
+const inputTextField = document.querySelector('input');
+const btnFormSubmit = document.querySelector("button[type=submit]")
+const btnLoadMore = document.querySelector('.load-more');
+const gallarySection = document.querySelector('.gallary-sections');
+const loader = document.querySelector('.loader');
+
+const gallaryApiService = new GallaryApiService();
+
+var lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
+
+console.log(form);
+console.log(inputTextField);
+console.log(btnFormSubmit);
+console.log(btnLoadMore);
 
 
 
 
+form.addEventListener('submit', onSearch);
+btnLoadMore.addEventListener('click', onLaodMore);
 
+function onSearch(event) {
+  event.preventDefault();
+  
 
+  gallaryApiService.query = event.currentTarget.elements.searchQuery.value;
+  if (gallaryApiService.query === "") {
+    return Notiflix.Report.warning(
+      'Warning',
+      'Please fill in the search field'
+    );
+  }
+  gallaryApiService.resetPage();
+  gallaryApiService
+    .fetchArticles().then(data => {
+      
+      new lightbox.refresh;
+     })
 
+clearGallary();
+  }
+  
 
+function onLaodMore() {
+  loader.classList.remove('hide');
+gallaryApiService
+  .fetchArticles().then(data => {
+    loader.classList.add('hide');
+    lightbox.refresh();
+  })
+}
 
+function clearGallary() {
+  gallarySection.innerHTML = "";
+  inputTextField.value = "";
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-{/* <div class="photo-card">
-  <img src="" alt="" loading="lazy" />
-  <div class="info">
-    <p class="info-item">
-      <b>Likes</b>
-    </p>
-    <p class="info-item">
-      <b>Views</b>
-    </p>
-    <p class="info-item">
-      <b>Comments</b>
-    </p>
-    <p class="info-item">
-      <b>Downloads</b>
-    </p>
-  </div>
-</div> */}
