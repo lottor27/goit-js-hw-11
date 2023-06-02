@@ -1,6 +1,13 @@
 import { gallarySection, clearGallary, btnLoadMore } from '../index.js';
 import { appendGallaryMarkup } from './markup.js';
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
+var lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 export default class apiService {
     constructor() {
@@ -36,6 +43,8 @@ export default class apiService {
                 'beforeend',
                 appendGallaryMarkup(data.hits)
             );
+            lightbox;
+            
             btnLoadMore.classList.remove("hide");
             // console.log(gallarySection[i]);
             return data.hits
@@ -76,3 +85,4 @@ function checkFatch(totalHits) {
     Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
   }
 }
+

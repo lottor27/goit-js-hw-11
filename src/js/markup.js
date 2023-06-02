@@ -9,8 +9,8 @@ function appendGallaryMarkup(arr) {
         likes,
         views,
         comments,
-        downloads,
-        largeImageURL,
+          downloads,
+        largeImageURL
       }) => `<div class="photo-card">
     <div class = "img-box">
     <a class="gallery__link" href="${largeImageURL}">
