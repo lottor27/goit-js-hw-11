@@ -61,3 +61,4 @@ function clearGallary() {
   gallarySection.innerHTML = '';
   inputTextField.value = '';
 }
+
