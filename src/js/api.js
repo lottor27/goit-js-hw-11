@@ -28,17 +28,33 @@ export default class apiService {
 
     const URL = `https://pixabay.com/api/?key=${options.key}&q=${this.searchQuery}&image_type=${options.image_type}&orientation=${options.orientation}&safesearch=${options.safesearch}&per_page=${options.per_page}&page=${this.page}`;
 
-    return fetch(URL, options)
+    return fetch (URL, options) 
       .then(response => {
         if (response.ok) {
           return response.json();
         }
       })
-        .then(data => {
+      .then(data => {
+          
             console.log(data);
            this.incrimentPage();
-            console.log('response');
-            checkFatch(data.totalHits);
+          console.log('response');
+          const limit = (this.page - 1) * 40;
+        console.log(limit);
+        console.log(data.totalHits);
+        if (data.totalHits === 0) {
+          Notiflix.Notify.failure(
+            'Sorry, there are no images matching your search query. Please try again.'
+          );
+          btnLoadMore.classList.add('hide');
+          return;  
+          } else if (limit >= data.totalHits) {
+               Notiflix.Notify.failure(
+                 `We're sorry, but you've reached the end of search results.`
+               );
+               btnLoadMore.classList.add('hide');
+               return;
+          }
             gallarySection.insertAdjacentHTML(
                 'beforeend',
                 appendGallaryMarkup(data.hits)
@@ -46,16 +62,37 @@ export default class apiService {
             lightbox;
             
             btnLoadMore.classList.remove("hide");
-            // console.log(gallarySection[i]);
+            Notiflix.Notify.success(
+              `Hooray! We found ${data.totalHits} images.`
+            );
             return data.hits
       })
         .catch(function (error) {
           btnLoadMore.classList.add('hide');
         Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
-        );
+          );
+          console.log("ili tyt");
       });
     }
+
+//   checkFatch() {
+
+//   //   if (totalHits === 0) {
+//   //     btnLoadMore.classList.add('hide');
+//   //   Notiflix.Notify.failure(
+//   //     'Sorry, there are no images matching your search query. Please try again.'
+      
+//   //     );
+//   //     console.log('ytnen');
+//   //   clearGallary();
+//   //   return;
+//   //   } else if (limit === 500) {
+//   //     console.log("tyt");
+//   // } else {
+//   //   Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+//   // }
+// }
 
     resetPage() {
         this.page = 1;
@@ -73,16 +110,7 @@ export default class apiService {
 
 Notiflix.Notify.init({ position: 'right-bottom' });
 
-function checkFatch(totalHits) {
-    if (totalHits === 0) {
-      btnLoadMore.classList.add('hide');
-    Notiflix.Notify.failure(
-      'Sorry, there are no images matching your search query. Please try again.'
-    );
-    clearGallary();
-    return;
-  } else {
-    Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
-  }
-}
+// function
 
+
+// page * per_page;
