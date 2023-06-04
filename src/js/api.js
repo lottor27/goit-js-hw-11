@@ -4,10 +4,11 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { checkFetch } from "./chechFetch.js"
-import axios from 'axios'
+// import axios from 'axios'
 
 
 const axios = require('axios').default;
+
 var lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
