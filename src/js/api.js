@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { checkFetch } from "./chechFetch.js"
-import axios from 'axios'
+// import axios from 'axios'
 
 
 const axios = require('axios').default;
