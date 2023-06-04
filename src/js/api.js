@@ -4,12 +4,12 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { checkFetch } from "./chechFetch.js"
-// import axios from 'axios'
+import axios from 'axios'
 
 
 const axios = require('axios').default;
 
-var lightbox = new SimpleLightbox('.gallery a', {
+let lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
@@ -43,8 +43,6 @@ export default class apiService {
         this.incrimentPage();
         console.log('response');
         const hitsFetch = data.data.hits;
-        // console.log(limit);
-        // console.log(data.data.totalHits);
       const limit = (this.page - 1) * 40;
       const totalHitsFetch = data.data.totalHits;
   checkFetch(limit, totalHitsFetch);

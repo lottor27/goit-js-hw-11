@@ -4,7 +4,6 @@ import GallaryApiService from './js/api';
 
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-
 export { gallarySection, clearGallary, btnLoadMore };
 
 // const axios = require('axios').default;
@@ -17,7 +16,7 @@ const loader = document.querySelector('.loader');
 
 const gallaryApiService = new GallaryApiService();
 
-var lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
@@ -34,16 +33,22 @@ function onSearch(event) {
   event.preventDefault();
 
   gallaryApiService.query = event.currentTarget.elements.searchQuery.value;
-console.dir(gallaryApiService.query.trim());
-  if (gallaryApiService.query == '') {
+  const spacebtns = gallaryApiService.query.trim();
+  console.dir(gallaryApiService.query.trim());
+  if (gallaryApiService.query === '') {
     return Notiflix.Report.warning(
       'Warning',
       'Please fill in the search field'
     );
-  } 
+  } else if (spacebtns === '') {
+    clearGallary();
+    return Notiflix.Report.warning(
+      'Warning',
+      'Please fill in the search field'
+    );
+  }
   gallaryApiService.resetPage();
   gallaryApiService.fetchArticles().then(data => {
-    
     lightbox.refresh();
   });
 
@@ -55,8 +60,7 @@ function onLaodMore() {
   gallaryApiService.fetchArticles().then(data => {
     loader.classList.add('hide');
 
-lightbox.refresh();
-    
+    lightbox.refresh();
   });
 }
 
@@ -66,7 +70,6 @@ function clearGallary() {
 }
 
 // const { height: cardHeight } = gallarySection.firstElementChild.onLaodMore();
-
 
 // window.scrollBy({
 //   top: cardHeight * 2,
