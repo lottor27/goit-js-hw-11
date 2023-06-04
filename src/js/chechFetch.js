@@ -12,7 +12,9 @@ function checkFetch(limit, totalHitsFetch) {
   } else if (limit >= totalHitsFetch) {
     Notiflix.Notify.failure(
       `We're sorry, but you've reached the end of search results.`
-    );
+      
+      );
+      Notiflix.Notify.success(`Hooray! We found ${totalHitsFetch} images.`);
     btnLoadMore.classList.add('hide');
     return;
   }

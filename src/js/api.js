@@ -1,9 +1,10 @@
-import { gallarySection, clearGallary, btnLoadMore } from '../index.js';
+import { gallarySection,} from '../index.js';
 import { appendGallaryMarkup } from './markup.js';
 import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { checkFetch } from "./chechFetch.js"
+import axios from 'axios'
 
 
 const axios = require('axios').default;

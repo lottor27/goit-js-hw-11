@@ -1,9 +1,9 @@
 import SimpleLightbox from 'simplelightbox';
 import Notiflix from 'notiflix';
 import GallaryApiService from './js/api';
-import { appendGallaryMarkup } from './js/markup';
+
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { checkFatch } from './js/api';
+
 
 export { gallarySection, clearGallary, btnLoadMore };
 
@@ -34,13 +34,13 @@ function onSearch(event) {
   event.preventDefault();
 
   gallaryApiService.query = event.currentTarget.elements.searchQuery.value;
-
-  if (gallaryApiService.query === '') {
+console.dir(gallaryApiService.query.trim());
+  if (gallaryApiService.query == '') {
     return Notiflix.Report.warning(
       'Warning',
       'Please fill in the search field'
     );
-  }
+  } 
   gallaryApiService.resetPage();
   gallaryApiService.fetchArticles().then(data => {
     
@@ -65,3 +65,10 @@ function clearGallary() {
   inputTextField.value = '';
 }
 
+// const { height: cardHeight } = gallarySection.firstElementChild.onLaodMore();
+
+
+// window.scrollBy({
+//   top: cardHeight * 2,
+//   behavior: 'smooth',
+// });
